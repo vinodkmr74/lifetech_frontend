@@ -1,54 +1,31 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import Router from '../router.jsx'
-import { MdDashboard } from "react-icons/md";
-
-import { FaCalendarCheck } from "react-icons/fa";
-
+import React from "react";
+import Router from "../router.jsx";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 
 export default function App() {
   return (
     <>
-      <div className="flex w-full ">
+      <ToastContainer
+        position="top-right"
+        autoClose={4000}
+        limit={1}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
 
-        
-
-        <div className="w-[20%] h-[130vh] p-4 bg-[#c5cbcd]">
-
-
-
-            <div className="flex items-center hover:bg-[#3babc2] p-2 gap-2 font-bold">
-            <FaCalendarCheck />
-            <Link to="/">
-              login
-            </Link>
-          </div>
-
-
-          <div className="flex items-center hover:bg-[#3babc2] p-2 gap-2 font-bold">
-            <MdDashboard />
-            <Link to="/dashboard">Dashboard </Link>
-          </div>
-
-
-          {/* 
-          <Link to="/signin" className="block mb-2  hover:underline">
-            Sign Up
-          </Link> */}
-
-          <div className="flex items-center hover:bg-[#3babc2] p-2 gap-2 font-bold">
-            <FaCalendarCheck />
-            <Link to="/appointments">
-              Appointments
-            </Link>
-          </div>
+      <div className="flex w-full  overflow-hidden">
+        <div className="w-full">
+          {" "}
+          <Router />
         </div>
-
-        <div className='w-full'> <Router /></div>
       </div>
-
-
-
     </>
-  )
+  );
 }

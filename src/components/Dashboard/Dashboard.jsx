@@ -1,15 +1,22 @@
-import React, { useState } from 'react'
-import DashboardBox from './DashboardBox'
+import React, { useState } from "react";
+import DashboardBox from "./DashboardBox";
 import { IoSettingsOutline } from "react-icons/io5";
-import { BarChart, Legend, XAxis, YAxis, CartesianGrid, Tooltip, Bar, ResponsiveContainer, PieChart, Pie } from 'recharts';
+import {
+  BarChart,
+  Legend,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Bar,
+  ResponsiveContainer,
+  PieChart,
+  Pie,
+} from "recharts";
 import { FiUser } from "react-icons/fi";
 import { TfiLock } from "react-icons/tfi";
 
-
-
 export default function Dashboard() {
-
-
   const isAnimationActive = true;
 
   const data = [
@@ -19,52 +26,88 @@ export default function Dashboard() {
     { name: "v4", p: 4000, pv: 6000, t: 4002 },
   ];
 
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
 
   return (
     <>
-      <div className='w-full h-[80px] h-[80px] bg-[#e1e5e9] flex items-center'>
-        <IoSettingsOutline size={24} onClick={()=>setOpen(!open)} 
-        className='ml-[1000px] bg-[#bbf7d0] cursor-pointer' />
+      <div className="w-full h-[80px] bg-[#e9edf1] flex items-center">
+        <IoSettingsOutline
+          size={24}
+          onClick={() => setOpen(!open)}
+          className="mr-6 ml-auto cursor-pointer"
+        />
       </div>
- {open && (
-  <>
-    {/* DARK OVERLAY */}
-    <div 
-      className="fixed inset-0 bg-black bg-opacity-40 z-40"
-      onClick={() => setOpen(false)}  
-    ></div>
+      {open && (
+        <>
+          {/* DARK OVERLAY */}
+          <div
+            className="fixed inset-0 bg-black bg-opacity-40 z-40"
+            onClick={() => setOpen(false)}
+          ></div>
 
-    {/* POPUP BOX (SCROLLS WITH PAGE) */}
-    <div className="absolute z-50 top-[60px] left-[70%] w-[350px] p-0 bg-white rounded-lg shadow-xl overflow-y-auto">
-      <div className="border-b border-gray-500 flex p-1 bg-green-200">
-        <img className='h-16 w-16 p-2 rounded-full' src="/image/profile-user.jpg"></img>
-        <p className='p-4'>Hello</p>
+          {/* POPUP BOX (SCROLLS WITH PAGE) */}
+          <div
+            className="
+             absolute z-50
+             top-[60px]
+            left-[30%]
+             sm:left-[60%]
+               md:left-[70%]
+              lg:left-[80%]
+               w-[225px]
+                md:w-[240px]
+                 lg:w-[250px]
+                      p-0 
+                     bg-white
+                   rounded-lg
+                 shadow-xl
+                overflow-y-auto"
+          >
+            <div className="border-b border-gray-500 flex p-1 bg-green-200">
+              <img
+                className="h-16 w-16 p-2 rounded-full"
+                src="/image/profile-user.jpg"
+              ></img>
+              <p className="p-4">Hello</p>
+            </div>
+            <div className="p-4">
+              <p className="text-gray-700 mb-4 gap-2 flex">
+                {" "}
+                <FiUser />
+                Profile
+              </p>
+              <p className="text-gray-700 mb-4 gap-2 flex">
+                {" "}
+                <TfiLock />
+                Logout
+              </p>
+            </div>
+          </div>
+        </>
+      )}
 
-      </div>
-     <div className="p-4">
-         <p className="text-gray-700 mb-4 gap-2 flex"> <FiUser />Profile</p>
-      <p className="text-gray-700 mb-4 gap-2 flex"> <TfiLock />Logout</p>
-     </div>
-   
-
-    </div>
-  </>
-)}
-
-
-      <div className='bg-green-300 w-full h-[250px] p-1 rounded'>
-
-        <div className='flex p-4  justify-between w-full h-[300px]'>
-          <DashboardBox label='Dashboard' />
-          <DashboardBox label='Dashboard' />
-          <DashboardBox label='Dashboard' />
-          <DashboardBox label='Dashboard' />
+      <div className="">
+        <div
+          className="
+          flex flex-wrap
+          justify-center lg:justify-between
+          gap-2
+         bg-green-300
+          w-full
+          min-h-[210px] md:min-h-[200px] lg:min-h-[210px]
+         p-4
+         m-2
+         rounded-lg
+         "
+        >
+          <DashboardBox label="Dashboard" />
+          <DashboardBox label="Dashboard" />
+          <DashboardBox label="Dashboard" />
+          <DashboardBox label="Dashboard" />
         </div>
 
-        <div className='flex pt-0 w-full '>
-
-          <div style={{ width: '100%', maxWidth: '700px' }}>
+        <div className="flex md:flex-row flex-col pt-0 w-full border  ">
+          <div style={{ width: "100%", maxWidth: "700px" }}>
             <ResponsiveContainer width="100%" height={380}>
               <BarChart data={data}>
                 <CartesianGrid strokeDasharray="3 3" />
@@ -72,7 +115,6 @@ export default function Dashboard() {
                 <YAxis />
                 <Tooltip />
                 <Legend />
-
                 {/* REMOVED isAnimationActive (it was undefined) */}
                 <Bar dataKey="p" fill="#0db9cfff" />
                 <Bar dataKey="pv" fill="#3f42d1ff" />
@@ -81,12 +123,9 @@ export default function Dashboard() {
             </ResponsiveContainer>
           </div>
 
-
           <div className="w-full pt-0">
             <ResponsiveContainer width="100%" height={380}>
-              <PieChart
-                margin={{ top: 30, right: 40, bottom: 90, left: 60 }}
-              >
+              <PieChart margin={{ top: 30, right: 40, bottom: 90, left: 60 }}>
                 {/* First Pie */}
                 <Pie
                   data={data}
@@ -129,13 +168,8 @@ export default function Dashboard() {
               </PieChart>
             </ResponsiveContainer>
           </div>
-
-
         </div>
-
-
-
       </div>
     </>
-  )
+  );
 }
